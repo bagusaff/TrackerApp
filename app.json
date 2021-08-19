@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "TrackerApp",
+    "slug": "TrackerApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "TrackerApp"
+}
