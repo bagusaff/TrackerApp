@@ -49,7 +49,28 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>UIStatusBarStyle</key>
-  <string>UIStatusBarStyleDefault</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SlatePro-Bk.ttf</string>
+		<string>SlatePro-BkCondensed.ttf</string>
+		<string>SlatePro-BkItalic.ttf</string>
+		<string>SlatePro-Black.ttf</string>
+		<string>SlatePro-BlackCondensed.ttf</string>
+		<string>SlatePro-BlackItalic.ttf</string>
+		<string>SlatePro-Bold.ttf</string>
+		<string>SlatePro-BoldCondensed.ttf</string>
+		<string>SlatePro-BoldItalic.ttf</string>
+		<string>SlatePro-Condensed.ttf</string>
+		<string>SlatePro-Italic.ttf</string>
+		<string>SlatePro-Light.ttf</string>
+		<string>SlatePro-LightCondensed.ttf</string>
+		<string>SlatePro-LightItalic.ttf</string>
+		<string>SlatePro-Medium.ttf</string>
+		<string>SlatePro-MediumCondensed.ttf</string>
+		<string>SlatePro-MediumItalic.ttf</string>
+		<string>SlatePro.ttf</string>
+	</array>
 </dict>
 </plist>

@@ -1,0 +1,19 @@
+{
+  "strict": {
+    "text-font-family": "SlatePro-Bk",
+    "text-heading-1-font-weight": "700",
+    "text-heading-1-font-family": "SlatePro-Bold",
+
+    "text-subtitle-1-font-weight": "500",
+    "text-subtitle-1-font-family": "SlatePro-Medium",
+
+    "text-paragraph-1-font-weight": "400",
+    "text-paragraph-1-font-family": "SlatePro-Bk",
+
+    "text-caption-1-font-weight": "300",
+    "text-caption-1-font-family": "SlatePro-Light",
+
+    "text-label-font-weight": "300",
+    "text-label-font-family": "SlatePro-Bk"
+  }
+}

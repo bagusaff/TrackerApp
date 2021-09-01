@@ -14,6 +14,24 @@
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		96905EF65AED1B983A6B3ABC /* libPods-TrackerApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-TrackerApp.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		520AFD9E17A14EEA9EA655A6 /* SlatePro-Bk.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12C76148E5154D91A5E4DA8A /* SlatePro-Bk.ttf */; };
+		D6F269DFEC6A405A8AC63BE6 /* SlatePro-BkCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C723099D1ADE430D9DC53DD2 /* SlatePro-BkCondensed.ttf */; };
+		C15E660227C340048242F09A /* SlatePro-BkItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C27CC457E574417BDF30FF4 /* SlatePro-BkItalic.ttf */; };
+		CA5D4F93346F44C5B9910344 /* SlatePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7442BAD9CDD4973BAD81503 /* SlatePro-Black.ttf */; };
+		32B74F4D78C94E7B96A26731 /* SlatePro-BlackCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAB91B74227A42E4B5F8A0C6 /* SlatePro-BlackCondensed.ttf */; };
+		F5D238AED6D34E3F92A6A2F1 /* SlatePro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAF0D46A75384BA38E5D1946 /* SlatePro-BlackItalic.ttf */; };
+		989C059EEFEF427C8B4152C6 /* SlatePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D3E8C7E0DA14636981EEA57 /* SlatePro-Bold.ttf */; };
+		79B47E80EB4E40EFB025D99C /* SlatePro-BoldCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBC5703A8487408796BC4041 /* SlatePro-BoldCondensed.ttf */; };
+		B9A3D5FD21C64FAE9E02775A /* SlatePro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72127FB8C6C846C8B6636A95 /* SlatePro-BoldItalic.ttf */; };
+		3FD4824384854C1DA2CBD6B7 /* SlatePro-Condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD6AB714F5E24B97817D0CA8 /* SlatePro-Condensed.ttf */; };
+		70168046696349D5ABE13625 /* SlatePro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D79960EDBBA24366B34E94BC /* SlatePro-Italic.ttf */; };
+		89938A6C9A1C4315A3D36A18 /* SlatePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C545CB5D1C740EDAF6DE9B6 /* SlatePro-Light.ttf */; };
+		4704781F06A64BB1A121C554 /* SlatePro-LightCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 88CDF918797F44C7AF88A4F2 /* SlatePro-LightCondensed.ttf */; };
+		2FF673B60A404C869927D4D6 /* SlatePro-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 702B6B9A9B3248C88FC2761A /* SlatePro-LightItalic.ttf */; };
+		7D3706E704F14309BA990949 /* SlatePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03148A82DAFA4672ACB6EF39 /* SlatePro-Medium.ttf */; };
+		AC1205EE30DF439596A51204 /* SlatePro-MediumCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8B55DAC2F3C49FE9D946971 /* SlatePro-MediumCondensed.ttf */; };
+		218F8C9FECFF46C78A986664 /* SlatePro-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A607AAC832404F8F98EE730B /* SlatePro-MediumItalic.ttf */; };
+		D3CEA113F88C492AA7F53AE1 /* SlatePro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60FF04A3A1AA428C8AF307B5 /* SlatePro.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +50,24 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		12C76148E5154D91A5E4DA8A /* SlatePro-Bk.ttf */ = {isa = PBXFileReference; name = "SlatePro-Bk.ttf"; path = "../src/assets/fonts/SlatePro-Bk.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C723099D1ADE430D9DC53DD2 /* SlatePro-BkCondensed.ttf */ = {isa = PBXFileReference; name = "SlatePro-BkCondensed.ttf"; path = "../src/assets/fonts/SlatePro-BkCondensed.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0C27CC457E574417BDF30FF4 /* SlatePro-BkItalic.ttf */ = {isa = PBXFileReference; name = "SlatePro-BkItalic.ttf"; path = "../src/assets/fonts/SlatePro-BkItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C7442BAD9CDD4973BAD81503 /* SlatePro-Black.ttf */ = {isa = PBXFileReference; name = "SlatePro-Black.ttf"; path = "../src/assets/fonts/SlatePro-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AAB91B74227A42E4B5F8A0C6 /* SlatePro-BlackCondensed.ttf */ = {isa = PBXFileReference; name = "SlatePro-BlackCondensed.ttf"; path = "../src/assets/fonts/SlatePro-BlackCondensed.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EAF0D46A75384BA38E5D1946 /* SlatePro-BlackItalic.ttf */ = {isa = PBXFileReference; name = "SlatePro-BlackItalic.ttf"; path = "../src/assets/fonts/SlatePro-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3D3E8C7E0DA14636981EEA57 /* SlatePro-Bold.ttf */ = {isa = PBXFileReference; name = "SlatePro-Bold.ttf"; path = "../src/assets/fonts/SlatePro-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BBC5703A8487408796BC4041 /* SlatePro-BoldCondensed.ttf */ = {isa = PBXFileReference; name = "SlatePro-BoldCondensed.ttf"; path = "../src/assets/fonts/SlatePro-BoldCondensed.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		72127FB8C6C846C8B6636A95 /* SlatePro-BoldItalic.ttf */ = {isa = PBXFileReference; name = "SlatePro-BoldItalic.ttf"; path = "../src/assets/fonts/SlatePro-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BD6AB714F5E24B97817D0CA8 /* SlatePro-Condensed.ttf */ = {isa = PBXFileReference; name = "SlatePro-Condensed.ttf"; path = "../src/assets/fonts/SlatePro-Condensed.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D79960EDBBA24366B34E94BC /* SlatePro-Italic.ttf */ = {isa = PBXFileReference; name = "SlatePro-Italic.ttf"; path = "../src/assets/fonts/SlatePro-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5C545CB5D1C740EDAF6DE9B6 /* SlatePro-Light.ttf */ = {isa = PBXFileReference; name = "SlatePro-Light.ttf"; path = "../src/assets/fonts/SlatePro-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		88CDF918797F44C7AF88A4F2 /* SlatePro-LightCondensed.ttf */ = {isa = PBXFileReference; name = "SlatePro-LightCondensed.ttf"; path = "../src/assets/fonts/SlatePro-LightCondensed.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		702B6B9A9B3248C88FC2761A /* SlatePro-LightItalic.ttf */ = {isa = PBXFileReference; name = "SlatePro-LightItalic.ttf"; path = "../src/assets/fonts/SlatePro-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		03148A82DAFA4672ACB6EF39 /* SlatePro-Medium.ttf */ = {isa = PBXFileReference; name = "SlatePro-Medium.ttf"; path = "../src/assets/fonts/SlatePro-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F8B55DAC2F3C49FE9D946971 /* SlatePro-MediumCondensed.ttf */ = {isa = PBXFileReference; name = "SlatePro-MediumCondensed.ttf"; path = "../src/assets/fonts/SlatePro-MediumCondensed.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A607AAC832404F8F98EE730B /* SlatePro-MediumItalic.ttf */ = {isa = PBXFileReference; name = "SlatePro-MediumItalic.ttf"; path = "../src/assets/fonts/SlatePro-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		60FF04A3A1AA428C8AF307B5 /* SlatePro.ttf */ = {isa = PBXFileReference; name = "SlatePro.ttf"; path = "../src/assets/fonts/SlatePro.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +123,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
+				81ADB1D47D714FEABBBF2A9A /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -118,6 +155,32 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		81ADB1D47D714FEABBBF2A9A /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				12C76148E5154D91A5E4DA8A /* SlatePro-Bk.ttf */,
+				C723099D1ADE430D9DC53DD2 /* SlatePro-BkCondensed.ttf */,
+				0C27CC457E574417BDF30FF4 /* SlatePro-BkItalic.ttf */,
+				C7442BAD9CDD4973BAD81503 /* SlatePro-Black.ttf */,
+				AAB91B74227A42E4B5F8A0C6 /* SlatePro-BlackCondensed.ttf */,
+				EAF0D46A75384BA38E5D1946 /* SlatePro-BlackItalic.ttf */,
+				3D3E8C7E0DA14636981EEA57 /* SlatePro-Bold.ttf */,
+				BBC5703A8487408796BC4041 /* SlatePro-BoldCondensed.ttf */,
+				72127FB8C6C846C8B6636A95 /* SlatePro-BoldItalic.ttf */,
+				BD6AB714F5E24B97817D0CA8 /* SlatePro-Condensed.ttf */,
+				D79960EDBBA24366B34E94BC /* SlatePro-Italic.ttf */,
+				5C545CB5D1C740EDAF6DE9B6 /* SlatePro-Light.ttf */,
+				88CDF918797F44C7AF88A4F2 /* SlatePro-LightCondensed.ttf */,
+				702B6B9A9B3248C88FC2761A /* SlatePro-LightItalic.ttf */,
+				03148A82DAFA4672ACB6EF39 /* SlatePro-Medium.ttf */,
+				F8B55DAC2F3C49FE9D946971 /* SlatePro-MediumCondensed.ttf */,
+				A607AAC832404F8F98EE730B /* SlatePro-MediumItalic.ttf */,
+				60FF04A3A1AA428C8AF307B5 /* SlatePro.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -183,6 +246,24 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				520AFD9E17A14EEA9EA655A6 /* SlatePro-Bk.ttf in Resources */,
+				D6F269DFEC6A405A8AC63BE6 /* SlatePro-BkCondensed.ttf in Resources */,
+				C15E660227C340048242F09A /* SlatePro-BkItalic.ttf in Resources */,
+				CA5D4F93346F44C5B9910344 /* SlatePro-Black.ttf in Resources */,
+				32B74F4D78C94E7B96A26731 /* SlatePro-BlackCondensed.ttf in Resources */,
+				F5D238AED6D34E3F92A6A2F1 /* SlatePro-BlackItalic.ttf in Resources */,
+				989C059EEFEF427C8B4152C6 /* SlatePro-Bold.ttf in Resources */,
+				79B47E80EB4E40EFB025D99C /* SlatePro-BoldCondensed.ttf in Resources */,
+				B9A3D5FD21C64FAE9E02775A /* SlatePro-BoldItalic.ttf in Resources */,
+				3FD4824384854C1DA2CBD6B7 /* SlatePro-Condensed.ttf in Resources */,
+				70168046696349D5ABE13625 /* SlatePro-Italic.ttf in Resources */,
+				89938A6C9A1C4315A3D36A18 /* SlatePro-Light.ttf in Resources */,
+				4704781F06A64BB1A121C554 /* SlatePro-LightCondensed.ttf in Resources */,
+				2FF673B60A404C869927D4D6 /* SlatePro-LightItalic.ttf in Resources */,
+				7D3706E704F14309BA990949 /* SlatePro-Medium.ttf in Resources */,
+				AC1205EE30DF439596A51204 /* SlatePro-MediumCondensed.ttf in Resources */,
+				218F8C9FECFF46C78A986664 /* SlatePro-MediumItalic.ttf in Resources */,
+				D3CEA113F88C492AA7F53AE1 /* SlatePro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
