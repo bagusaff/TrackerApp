@@ -6,6 +6,7 @@ import AddOrderScreen from "../screens/AddOrder.screen";
 import FinishDeliveryScreen from "../screens/FinishDelivery.screen";
 import NotificationScreen from "../screens/Notification.screen";
 import OrderListsScreen from "../screens/OrderLists.screen";
+import DeliveryOnProgress from "../screens/DeliveryOnProgress.screen";
 import GeoLocation from "../screens/GeoLocation.screen";
 import MapView from "../screens/MapView";
 
@@ -22,6 +23,7 @@ const HomeStackScreen = () => {
       <Stack.Screen component={FinishDeliveryScreen} name="FinishDelivery" />
       <Stack.Screen component={NotificationScreen} name="Notification" />
       <Stack.Screen component={OrderListsScreen} name="OrderLists" />
+      <Stack.Screen component={DeliveryOnProgress} name="DeliveryOnProgress" />
       <Stack.Screen component={GeoLocation} name="GeoLocation" />
       <Stack.Screen component={MapView} name="MapView" />
     </Stack.Navigator>

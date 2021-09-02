@@ -27,3 +27,9 @@ Run React Native
 ```bash
 npx react-native run-android / run-ios
 ```
+
+# Progress Update
+
+## 02/09/2021
+
+- Tracking Lokasi ketika user menekan tombol kirim paket

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   SafeAreaView,
-  View,
   Image,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import {
   Layout,
@@ -21,14 +21,43 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
-const FinishDelivery = () => {
+import useState from "react-usestateref";
+const FinishDelivery = ({ navigation }) => {
   const theme = useTheme();
 
   //Local State
   const [note, setNote] = useState("");
   const [photo, setPhoto] = useState(null);
+  const [isDone, setIsDone, isDoneRef] = useState(false);
+
+  //Local Variable
 
   //Local Functions
+  useEffect(
+    () =>
+      navigation.addListener("beforeRemove", (e) => {
+        if (isDoneRef.current) {
+          // If we don't have unsaved changes, then we don't need to do anything
+          return;
+        }
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+
+        // Prompt the user before leaving the screen
+        Alert.alert(
+          "Tidak Dapat Kembali",
+          "Anda harus mengisi form dan menekan tombol selesai",
+          [{ text: "OK", style: "cancel", onPress: () => {} }]
+        );
+      }),
+    [navigation, isDone]
+  );
+
+  const submitForm = () => {
+    setIsDone(true);
+    navigation.popToTop();
+  };
+
   const cameraLaunch = () => {
     let options = {
       storageOptions: {
@@ -160,7 +189,7 @@ const FinishDelivery = () => {
               onPress={imageGalleryLaunch}
             />
           )}
-          {photo && <Button>Selesai</Button>}
+          {photo && <Button onPress={submitForm}>Selesai</Button>}
         </Layout>
       </Layout>
     </SafeAreaView>

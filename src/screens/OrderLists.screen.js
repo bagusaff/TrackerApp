@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import {
+  Text,
   Layout,
   Divider,
   Icon,
@@ -10,16 +11,12 @@ import {
   List,
   ListItem,
 } from "@ui-kitten/components";
+import { useSelector } from "react-redux";
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-
-const data = new Array(18).fill({
-  title: "Title for Item",
-  description: "Description for Item",
-});
 
 //Icons
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
@@ -29,6 +26,13 @@ const renderArrowIcon = (props) => <Icon {...props} name="arrow-right" />;
 const OrderLists = ({ navigation, route }) => {
   const theme = useTheme();
   const { title, type } = route.params;
+
+  //Redux variable
+  const { orderList, loading } = useSelector((state) => state.order);
+
+  //Hooks variable
+  const [data, setData] = useState([]);
+
   //render local components
   const renderBackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={() => navigation.goBack()} />
@@ -37,13 +41,13 @@ const OrderLists = ({ navigation, route }) => {
   useEffect(() => {
     switch (type) {
       case 1:
-        console.log("1");
+        setData(orderList.filter((obj) => obj.status === "active"));
         break;
       case 2:
-        console.log("2");
+        setData(orderList.filter((obj) => obj.status === "delivery"));
         break;
       case 3:
-        console.log("3");
+        setData(orderList.filter((obj) => obj.status === "return"));
         break;
       default:
         break;
@@ -60,23 +64,27 @@ const OrderLists = ({ navigation, route }) => {
         />
         <Divider />
       </Layout>
-      <List
-        data={data}
-        renderItem={({ item, index }) => (
-          <ListItem
-            title={`${item.title} ${index + 1}`}
-            description={`${item.description} ${index + 1}`}
-            accessoryLeft={renderItemIcon}
-            accessoryRight={renderArrowIcon}
-            onPress={
-              type == 1
-                ? () => navigation.push("Delivery")
-                : () => navigation.goBack()
-            }
-          />
-        )}
-        ItemSeparatorComponent={Divider}
-      />
+      {data.length === 0 ? (
+        <Text>Belum ada transaksi</Text>
+      ) : (
+        <List
+          data={data}
+          renderItem={({ item }) => (
+            <ListItem
+              title={`${item.receipt_number}`}
+              description={`${item.receipt_address}`}
+              accessoryLeft={renderItemIcon}
+              accessoryRight={renderArrowIcon}
+              onPress={
+                type == 1
+                  ? () => navigation.push("Delivery")
+                  : () => navigation.goBack()
+              }
+            />
+          )}
+          ItemSeparatorComponent={Divider}
+        />
+      )}
     </SafeAreaView>
   );
 };

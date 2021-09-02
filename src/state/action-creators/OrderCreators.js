@@ -26,3 +26,11 @@ export const fetchOrders = (token) => (dispatch) => {
       console.log(err.response.data);
     });
 };
+
+export const updateLocations =
+  (token, longitude, latitude, orderId) => (dispatch) => {
+    const headers = {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+  };

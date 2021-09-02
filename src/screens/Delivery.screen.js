@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View, Alert } from "react-native";
 import {
   Layout,
   Text,
@@ -31,9 +31,27 @@ const DeliveryScreen = ({ navigation, route }) => {
     receipt_number,
     receipt_name,
     receipt_address,
-    receipt_phone,
     weight,
+    receipt_phone,
   } = item;
+
+  //local functions
+  const showConfirmDeliveryAlert = () => {
+    Alert.alert(
+      "Mulai Mengirim Paket ?",
+      "Anda tidak bisa membatalkan perintah ini dan harus menyelesaikan pengiriman.",
+      [
+        {
+          text: "Batal",
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => navigation.navigate("DeliveryOnProgress", { item }),
+        },
+      ]
+    );
+  };
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Wrapper */}
@@ -60,7 +78,7 @@ const DeliveryScreen = ({ navigation, route }) => {
             Mulai Mengirim
           </Text>
           <Text category="s1" style={{ color: theme["color-basic-500"] }}>
-            Penerima akan menerima pesan jika pesanannya sudah mulai diantar.
+            Penerima akan menerima pesan jika paketnya sudah mulai diantar.
           </Text>
         </Layout>
 
@@ -106,6 +124,15 @@ const DeliveryScreen = ({ navigation, route }) => {
             </Text>
           </View>
           <Divider />
+          <View style={{ paddingVertical: 5 }}>
+            <Text category="s1" style={{ color: theme["color-basic-700"] }}>
+              Nomor Telepon Penerima :
+            </Text>
+            <Text category="p1" style={{ color: theme["color-basic-700"] }}>
+              {receipt_phone}
+            </Text>
+          </View>
+          <Divider />
           <View style={{ paddingTop: 5 }}>
             <Text category="s1" style={{ color: theme["color-basic-700"] }}>
               Jumlah Paket :
@@ -116,52 +143,11 @@ const DeliveryScreen = ({ navigation, route }) => {
           </View>
         </Layout>
 
-        <Text
-          category="s1"
-          style={{
-            paddingHorizontal: 20,
-            paddingTop: 10,
-            paddingBottom: 5,
-            color: theme["color-basic-500"],
-          }}
-        >
-          Detail Pengiriman:
-        </Text>
-        <Layout
-          level="1"
-          style={{
-            width: "100%",
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-          }}
-        >
-          <View style={{ paddingVertical: 5 }}>
-            <Text category="s1" style={{ color: theme["color-basic-700"] }}>
-              Total Waktu :
-            </Text>
-            <Text category="p1" style={{ color: theme["color-basic-700"] }}>
-              00:00
-            </Text>
-          </View>
-          <Divider />
-          <View style={{ paddingTop: 5 }}>
-            <Text category="s1" style={{ color: theme["color-basic-700"] }}>
-              Jarak Tempuh:
-            </Text>
-            <Text category="p1" style={{ color: theme["color-basic-700"] }}>
-              0.0 KM
-            </Text>
-          </View>
-        </Layout>
-
         <Layout
           style={{ paddingHorizontal: 20, paddingTop: 10, width: "100%" }}
           level="2"
         >
-          <Button
-            size="small"
-            onPress={() => navigation.navigate("FinishDelivery")}
-          >
+          <Button size="small" onPress={showConfirmDeliveryAlert}>
             {" "}
             Mulai Mengirim
           </Button>
