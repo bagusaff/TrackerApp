@@ -33,3 +33,7 @@ npx react-native run-android / run-ios
 ## 02/09/2021
 
 - Tracking Lokasi ketika user menekan tombol kirim paket
+
+## 03/09/2021
+
+- Timer & Distance traveled & post finished order

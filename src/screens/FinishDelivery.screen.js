@@ -22,16 +22,22 @@ import {
 } from "react-native-responsive-screen";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import useState from "react-usestateref";
-const FinishDelivery = ({ navigation }) => {
-  const theme = useTheme();
+import { useSelector, useDispatch } from "react-redux";
 
+const FinishDelivery = ({ navigation, route }) => {
+  const theme = useTheme();
+  const dispatch = useDispatch();
   //Local State
   const [note, setNote] = useState("");
+  const [name, setName] = useState("");
   const [photo, setPhoto] = useState(null);
   const [isDone, setIsDone, isDoneRef] = useState(false);
 
+  //Redux Variable
+  const { token } = useSelector((state) => state.user);
   //Local Variable
-
+  const { finalLatitude, finalLongitude, totalTime, totalDistance, _id } =
+    route.params;
   //Local Functions
   useEffect(
     () =>
@@ -52,10 +58,23 @@ const FinishDelivery = ({ navigation }) => {
       }),
     [navigation, isDone]
   );
+  useEffect(() => {
+    console.log(route.params);
+  }, []);
 
   const submitForm = () => {
     setIsDone(true);
-    navigation.popToTop();
+    const data = {
+      orderId: _id,
+      token: token,
+      name: name,
+      note: note,
+      latitude: finalLatitude,
+      longitude: finalLongitude,
+      duration: totalTime,
+      distance: totalDistance,
+    };
+    console.log(data);
   };
 
   const cameraLaunch = () => {
@@ -154,6 +173,14 @@ const FinishDelivery = ({ navigation }) => {
             // caption={renderCaption}
             label="Catatan"
             onChangeText={(nextValue) => setNote(nextValue)}
+          />
+          <Input
+            value={name}
+            placeholder="Nama Penerima"
+            style={{ width: "100%", marginVertical: hp("2.5%") }}
+            // caption={renderCaption}
+            label="Nama Penerima"
+            onChangeText={(nextValue) => setName(nextValue)}
           />
           <Text
             category="label"

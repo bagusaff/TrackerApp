@@ -52,7 +52,13 @@ const HomeScreen = ({ navigation }) => {
 
   //Local Functions
   useEffect(() => {
-    dispatch(fetchOrders(token));
+    const unsubscribe = navigation.addListener("focus", () => {
+      dispatch(fetchOrders(token));
+    });
+    return () => {
+      // Unsubscribe for the focus Listener
+      unsubscribe();
+    };
   }, []);
 
   return (

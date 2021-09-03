@@ -24,6 +24,8 @@ import * as eva from "@eva-design/eva";
 import { default as theme } from "./src/custom-theme.json";
 import { default as mapping } from "./src/mapping.json";
 
+//Helper
+import { navigationRef } from "./RootNavigation";
 const AppWrapper = () => {
   const dispatch = useDispatch();
   //redux state
@@ -45,7 +47,7 @@ const AppWrapper = () => {
         theme={{ ...eva.light, ...theme }}
         customMapping={mapping}
       >
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           {isLoggedIn ? <BottomTab /> : <AuthStack />}
           <Toast ref={(ref) => Toast.setRef(ref)} />
         </NavigationContainer>

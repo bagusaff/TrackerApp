@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -19,24 +19,34 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import useState from "react-usestateref";
+import { useSelector, useDispatch } from "react-redux";
 import Geolocation from "react-native-geolocation-service";
 import VIForegroundService from "@voximplant/react-native-foreground-service";
-import Timer from "react-compound-timer";
+import { getDistance } from "geolib";
 
 //components
 import appConfig from "../../app.json";
+import { updateLocations } from "../state";
 
 const DeliveryOnProgress = ({ navigation, route }) => {
+  const dispatch = useDispatch();
+  //Redux variable
+  const { token } = useSelector((state) => state.user);
+
   //local variable
-  const { item } = route.params;
+  const { item, latitude, longitude } = route.params;
   const { receipt_name, receipt_address, weight, _id } = item;
-  const [time, setTime] = useState(null);
+  const [timer, setTimer, timerRef] = useState(0);
   const [tracking, setTracking] = useState(false);
-  const [startPosition, setStartPosition, startPositionRef] = useState(null);
   const [currentPosition, setCurrentPosition, currentPositionRef] =
     useState(null);
-  const [totalDistance, setTotalDistance] = useState(0);
+  const [totalDistance, setTotalDistance, totalDistanceRef] = useState(0);
   const [isDone, setIsDone, isDoneRef] = useState(false);
+  const minutes = `${Math.floor(timer / 60)}`;
+  const getMinutes = `0${minutes % 60}`.slice(-2);
+  const getHours = `0${Math.floor(timer / 3600)}`.slice(-2);
+  const watchId = useRef(null);
+
   //Useffect Functions
   useEffect(
     () =>
@@ -59,103 +69,58 @@ const DeliveryOnProgress = ({ navigation, route }) => {
   );
 
   useEffect(() => {
-    getLocation();
-    getLocationUpdates();
+    async function getUserLocation() {
+      await getLocationUpdates();
+    }
+    getUserLocation();
     return () => {
       removeLocationUpdates();
     };
   }, [removeLocationUpdates]);
 
+  useEffect(() => {
+    let start;
+    if (!isDone) {
+      start = setInterval(() => {
+        setTimer((timer) => timer + 1);
+      }, 1000);
+    }
+    return () => {
+      clearInterval(start);
+    };
+  }, [isDone]);
+
   //Location Tracker Functions
-  const hasLocationPermission = async () => {
-    if (Platform.OS === "ios") {
-      const hasPermission = await hasPermissionIOS();
-      return hasPermission;
-    }
-
-    if (Platform.OS === "android" && Platform.Version < 23) {
-      return true;
-    }
-
-    const hasPermission = await PermissionsAndroid.check(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-    );
-
-    if (hasPermission) {
-      return true;
-    }
-
-    const status = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-    );
-
-    if (status === PermissionsAndroid.RESULTS.GRANTED) {
-      return true;
-    }
-
-    if (status === PermissionsAndroid.RESULTS.DENIED) {
-      ToastAndroid.show(
-        "Location permission denied by user.",
-        ToastAndroid.LONG
-      );
-    } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-      ToastAndroid.show(
-        "Location permission revoked by user.",
-        ToastAndroid.LONG
-      );
-    }
-
-    return false;
-  };
-
-  const getLocation = async () => {
-    const hasPermission = await hasLocationPermission();
-
-    if (!hasPermission) {
-      return;
-    }
-
-    Geolocation.getCurrentPosition(
-      (position) => {
-        setStartPosition(position);
-      },
-      (error) => {
-        Alert.alert(`Code ${error.code}`, error.message);
-        setStartPosition(null);
-        console.log(error);
-      },
-      {
-        accuracy: {
-          android: "high",
-          ios: "best",
-        },
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 10000,
-        distanceFilter: 100,
-        forceRequestLocation: true,
-        forceLocationManager: true,
-        showLocationDialog: true,
-      }
-    );
-  };
-
   const getLocationUpdates = async () => {
-    const hasPermission = await hasLocationPermission();
-
-    if (!hasPermission) {
-      return;
-    }
-
     if (Platform.OS === "android") {
       await startForegroundService();
     }
 
     setTracking(true);
 
-    currentPositionRef.current = Geolocation.watchPosition(
+    watchId.current = Geolocation.watchPosition(
       (position) => {
         setCurrentPosition(position);
+        dispatch(
+          updateLocations(
+            token,
+            position.coords.longitude,
+            position.coords.latitude,
+            _id
+          )
+        );
+        setTotalDistance(
+          getDistance(
+            {
+              latitude: position?.coords?.latitude,
+              longitude: position?.coords?.longitude,
+            },
+            {
+              latitude: latitude,
+              longitude: longitude,
+            }
+          )
+        );
       },
       (error) => {
         console.log(error);
@@ -166,7 +131,7 @@ const DeliveryOnProgress = ({ navigation, route }) => {
           ios: "best",
         },
         enableHighAccuracy: true,
-        distanceFilter: 100,
+        distanceFilter: 0,
         interval: 5000,
         fastestInterval: 2000,
         forceRequestLocation: true,
@@ -178,10 +143,10 @@ const DeliveryOnProgress = ({ navigation, route }) => {
   };
 
   const removeLocationUpdates = useCallback(() => {
-    if (currentPositionRef.current !== null) {
+    if (watchId.current !== null) {
       stopForegroundService();
-      Geolocation.clearWatch(currentPositionRef.current);
-      currentPositionRef.current = null;
+      Geolocation.clearWatch(watchId.current);
+      watchId.current = null;
       setTracking(false);
     }
   }, [stopForegroundService]);
@@ -246,7 +211,13 @@ const DeliveryOnProgress = ({ navigation, route }) => {
   const orderFinished = () => {
     setIsDone(true);
     removeLocationUpdates();
-    navigation.navigate("FinishDelivery");
+    navigation.push("FinishDelivery", {
+      orderId: _id,
+      finalLatitude: currentPositionRef.current.coords.latitude,
+      finalLongitude: currentPositionRef.current.coords.longitude,
+      totalTime: timerRef.current,
+      totalDistance: totalDistanceRef.current,
+    });
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -270,21 +241,15 @@ const DeliveryOnProgress = ({ navigation, route }) => {
           <View style={styles.row}>
             <View style={[styles.detailBox, styles.half]}>
               <Text style={styles.valueTitle}>Waktu Berlalu</Text>
-              <Timer startImmediately={true} lastUnit="m">
-                <Text style={styles.detail}>
-                  <Timer.Minutes />
-                </Text>
-                <Text style={styles.detail}>
-                  <Timer.Seconds />
-                </Text>
-              </Timer>
-              <Text style={styles.detail}>00:45</Text>
+              <Text style={styles.detail}>
+                {getHours} : {getMinutes}
+              </Text>
             </View>
 
             <View style={[styles.detailBox, styles.half]}>
               <Text style={styles.valueTitle}>Total Jarak Ditempuh</Text>
               <Text style={styles.detail}>
-                {startPosition?.coords?.latitude}
+                {totalDistance ? totalDistance / 1000 : 0} KM
               </Text>
             </View>
           </View>
