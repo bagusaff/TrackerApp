@@ -89,7 +89,6 @@ const DeliveryOnProgress = ({ navigation, route }) => {
       clearInterval(start);
     };
   }, [isDone]);
-
   //Location Tracker Functions
   const getLocationUpdates = async () => {
     if (Platform.OS === "android") {
@@ -102,12 +101,12 @@ const DeliveryOnProgress = ({ navigation, route }) => {
       (position) => {
         setCurrentPosition(position);
         dispatch(
-          updateLocations(
+          updateLocations({
             token,
-            position.coords.longitude,
-            position.coords.latitude,
-            _id
-          )
+            longitude: currentPositionRef.current.coords.longitude,
+            latitude: currentPositionRef.current.coords.latitude,
+            _id,
+          })
         );
         setTotalDistance(
           getDistance(

@@ -79,7 +79,6 @@ const DeliveryScreen = ({ navigation, route }) => {
       ]
     );
   };
-
   //Trackers Function
   const hasLocationPermission = async () => {
     if (Platform.OS === "ios") {

@@ -1,13 +1,18 @@
-// RootNavigation.js
+import { createNavigationContainerRef } from "@react-navigation/native";
 
-import * as React from "react";
-
-export const navigationRef = React.createRef();
+export const navigationRef = createNavigationContainerRef();
 
 export function navigate(name, params) {
   navigationRef.current?.navigate(name, params);
 }
 
-export function reset(routes, params) {
+export function reset(routes, index, params) {
   navigationRef.current?.reset(routes, index, params);
+}
+
+export function popToTop() {
+  navigationRef.current?.popToTop();
+}
+export function goBack() {
+  navigationRef.current?.goBack();
 }

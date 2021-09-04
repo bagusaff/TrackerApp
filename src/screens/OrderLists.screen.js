@@ -44,7 +44,7 @@ const OrderLists = ({ navigation, route }) => {
         setData(orderList.filter((obj) => obj.status === "active"));
         break;
       case 2:
-        setData(orderList.filter((obj) => obj.status === "delivery"));
+        setData(orderList.filter((obj) => obj.status === "complete"));
         break;
       case 3:
         setData(orderList.filter((obj) => obj.status === "return"));
@@ -77,7 +77,7 @@ const OrderLists = ({ navigation, route }) => {
               accessoryRight={renderArrowIcon}
               onPress={
                 type == 1
-                  ? () => navigation.push("Delivery")
+                  ? () => navigation.push("Delivery", { item })
                   : () => navigation.goBack()
               }
             />

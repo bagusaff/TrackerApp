@@ -23,6 +23,7 @@ import {
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import useState from "react-usestateref";
 import { useSelector, useDispatch } from "react-redux";
+import { finishDelivery } from "../state";
 
 const FinishDelivery = ({ navigation, route }) => {
   const theme = useTheme();
@@ -36,7 +37,7 @@ const FinishDelivery = ({ navigation, route }) => {
   //Redux Variable
   const { token } = useSelector((state) => state.user);
   //Local Variable
-  const { finalLatitude, finalLongitude, totalTime, totalDistance, _id } =
+  const { finalLatitude, finalLongitude, totalTime, totalDistance, orderId } =
     route.params;
   //Local Functions
   useEffect(
@@ -58,14 +59,11 @@ const FinishDelivery = ({ navigation, route }) => {
       }),
     [navigation, isDone]
   );
-  useEffect(() => {
-    console.log(route.params);
-  }, []);
 
   const submitForm = () => {
     setIsDone(true);
     const data = {
-      orderId: _id,
+      orderId: orderId,
       token: token,
       name: name,
       note: note,
@@ -74,7 +72,7 @@ const FinishDelivery = ({ navigation, route }) => {
       duration: totalTime,
       distance: totalDistance,
     };
-    console.log(data);
+    dispatch(finishDelivery(data));
   };
 
   const cameraLaunch = () => {

@@ -43,7 +43,10 @@ export const startDelivery =
         { headers }
       )
       .then((res) => {
-        console.log(res.data);
+        Toast.show({
+          type: "success",
+          text1: "Selamat mengantar pesanan , tetap utamakan keselamatan !",
+        });
         RootNavigation.navigate("DeliveryOnProgress", {
           item: res.data,
           latitude: latitude,
@@ -68,7 +71,7 @@ export const finishDelivery = (data) => (dispatch) => {
   } = data;
   const headers = {
     Authorization: "Bearer " + token,
-    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Type": "application/json",
   };
   axios
     .put(
@@ -85,29 +88,42 @@ export const finishDelivery = (data) => (dispatch) => {
       { headers }
     )
     .then((res) => {
-      console.log(res.data);
+      Toast.show({
+        type: "success",
+        text1: "Paket telah diterima dan data berhasil disimpan !",
+      });
+      RootNavigation.reset({ routes: [{ name: "Home" }], index: 0 });
     })
-    .catch((err) => console.log(err.response));
+    .catch((err) => {
+      Toast.show({
+        type: "error",
+        text1: "Terjadi kesalahan dalam menyimpan data !",
+      });
+      console.log(err.response);
+    });
 };
 
 export const updateLocations =
-  (token, longitude, latitude, orderId) => (dispatch) => {
+  ({ token, longitude, latitude, _id }) =>
+  (dispatch) => {
     const headers = {
       Authorization: "Bearer " + token,
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
     };
     // dispatch({type:})
     axios
       .post(
         API_URL + "/locations",
         {
-          order_id: orderId,
+          order_id: _id,
           latitude: latitude,
           longitude: longitude,
         },
         { headers }
       )
-      .then((res) => console.log(res.data.message))
+      .then((res) => {
+        console.log(res.data.message);
+      })
       .catch((err) => {
         console.log(err.response);
       });

@@ -37,3 +37,7 @@ npx react-native run-android / run-ios
 ## 03/09/2021
 
 - Timer & Distance traveled & post finished order
+
+## 04/09/2021
+
+- Fitur Kirim paket done ( tinggal kurang unggah foto )

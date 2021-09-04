@@ -28,12 +28,6 @@ const AddIcon = (props) => (
 const renderItemIcon = (props) => <Icon {...props} name="gift" />;
 const renderArrowIcon = (props) => <Icon {...props} name="arrow-right" />;
 
-//Dummy Data
-// const data = new Array(3).fill({
-//   title: "Title for Item",
-//   description: "Description for Item",
-// });
-
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -166,7 +160,7 @@ const HomeScreen = ({ navigation }) => {
           <List
             style={styles.listWrapper}
             data={orderList
-              .filter((obj) => obj.status === "delivery")
+              .filter((obj) => obj.status === "complete")
               .slice(0, 3)}
             renderItem={({ item }) => (
               <ListItem
