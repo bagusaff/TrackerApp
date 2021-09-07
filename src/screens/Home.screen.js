@@ -204,7 +204,7 @@ const HomeScreen = ({ navigation }) => {
           <List
             style={styles.listWrapper}
             data={orderList
-              .filter((obj) => obj.status === "return")
+              .filter((obj) => obj.status === "failed")
               .slice(0, 3)}
             renderItem={({ item }) => (
               <ListItem

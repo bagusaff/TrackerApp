@@ -2,6 +2,9 @@ import {
   ORDER_FETCH_REQUEST,
   ORDER_FETCH_FAILURE,
   ORDER_FETCH_SUCCESS,
+  ORDER_SAVE_REQUEST,
+  ORDER_SAVE_FAILURE,
+  ORDER_SAVE_SUCCESS,
 } from "../constants";
 
 import axios from "axios";
@@ -73,6 +76,7 @@ export const finishDelivery = (data) => (dispatch) => {
     Authorization: "Bearer " + token,
     "Content-Type": "application/json",
   };
+  dispatch({ type: ORDER_SAVE_REQUEST });
   axios
     .put(
       API_URL + `/orders/${orderId}/complete`,
@@ -88,9 +92,57 @@ export const finishDelivery = (data) => (dispatch) => {
       { headers }
     )
     .then((res) => {
+      dispatch({ type: ORDER_SAVE_SUCCESS });
       Toast.show({
         type: "success",
         text1: "Paket telah diterima dan data berhasil disimpan !",
+      });
+      RootNavigation.reset({ routes: [{ name: "Home" }], index: 0 });
+    })
+    .catch((err) => {
+      Toast.show({
+        type: "error",
+        text1: "Terjadi kesalahan dalam menyimpan data !",
+      });
+      console.log(err.response);
+    });
+};
+
+export const failedDelivery = (data) => (dispatch) => {
+  const {
+    orderId,
+    token,
+    name,
+    latitude,
+    longitude,
+    duration,
+    distance,
+    note,
+  } = data;
+  const headers = {
+    Authorization: "Bearer " + token,
+    "Content-Type": "application/json",
+  };
+  dispatch({ type: ORDER_SAVE_REQUEST });
+  axios
+    .put(
+      API_URL + `/orders/${orderId}/failed`,
+      {
+        name: name,
+        image: API_URL,
+        latitude: latitude,
+        note: note,
+        longitude: longitude,
+        duration: duration,
+        distance: distance,
+      },
+      { headers }
+    )
+    .then((res) => {
+      dispatch({ type: ORDER_SAVE_FAILURE });
+      Toast.show({
+        type: "success",
+        text1: "Paket ditolak pelanggan , data tersimpan !",
       });
       RootNavigation.reset({ routes: [{ name: "Home" }], index: 0 });
     })

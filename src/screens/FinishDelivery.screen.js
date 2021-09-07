@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  View,
 } from "react-native";
 import {
   Layout,
@@ -15,6 +16,7 @@ import {
   Icon,
   useTheme,
   TopNavigation,
+  Spinner,
 } from "@ui-kitten/components";
 import {
   widthPercentageToDP as wp,
@@ -23,7 +25,7 @@ import {
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import useState from "react-usestateref";
 import { useSelector, useDispatch } from "react-redux";
-import { finishDelivery } from "../state";
+import { finishDelivery, failedDelivery } from "../state";
 
 const FinishDelivery = ({ navigation, route }) => {
   const theme = useTheme();
@@ -36,9 +38,24 @@ const FinishDelivery = ({ navigation, route }) => {
 
   //Redux Variable
   const { token } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state.order);
   //Local Variable
-  const { finalLatitude, finalLongitude, totalTime, totalDistance, orderId } =
-    route.params;
+  const {
+    finalLatitude,
+    finalLongitude,
+    totalTime,
+    totalDistance,
+    orderId,
+    type,
+  } = route.params;
+
+  //Local Components
+  const LoadingIndicator = (props) => (
+    <View style={[props.style, styles.indicator]}>
+      <Spinner status="primary" size="small" />
+    </View>
+  );
+
   //Local Functions
   useEffect(
     () =>
@@ -60,7 +77,7 @@ const FinishDelivery = ({ navigation, route }) => {
     [navigation, isDone]
   );
 
-  const submitForm = () => {
+  const submitFinished = () => {
     setIsDone(true);
     const data = {
       orderId: orderId,
@@ -73,6 +90,21 @@ const FinishDelivery = ({ navigation, route }) => {
       distance: totalDistance,
     };
     dispatch(finishDelivery(data));
+  };
+
+  const submitFailed = () => {
+    setIsDone(true);
+    const data = {
+      orderId: orderId,
+      token: token,
+      name: name,
+      note: note,
+      latitude: finalLatitude,
+      longitude: finalLongitude,
+      duration: totalTime,
+      distance: totalDistance,
+    };
+    dispatch(failedDelivery(data));
   };
 
   const cameraLaunch = () => {
@@ -132,8 +164,8 @@ const FinishDelivery = ({ navigation, route }) => {
       <Layout level="1">
         <TopNavigation
           alignment="center"
-          title="Pengiriman Selesai"
-          subtitle="Order JD201295792"
+          title={type === 1 ? "Pengiriman Selesai" : "Pengiriman Ditolak"}
+          subtitle={("Order", orderId)}
         />
       </Layout>
       <Divider />
@@ -148,7 +180,7 @@ const FinishDelivery = ({ navigation, route }) => {
           level="2"
         >
           <Text category="h1" status="primary" style={{ fontSize: wp("7.5%") }}>
-            Catatan Pengiriman
+            Catatan Pengiriman {type === 1 ? "Paket Diterima" : "Paket Ditolak"}
           </Text>
           <Text category="s1" style={{ color: theme["color-basic-500"] }}>
             Tambahkan bukti foto pengiriman dan catatan jika perlu
@@ -214,7 +246,15 @@ const FinishDelivery = ({ navigation, route }) => {
               onPress={imageGalleryLaunch}
             />
           )}
-          {photo && <Button onPress={submitForm}>Selesai</Button>}
+          {photo && (
+            <Button
+              onPress={type === 1 ? submitFinished : submitFailed}
+              accessoryLeft={loading ? LoadingIndicator : null}
+              disabled={loading}
+            >
+              {!loading ? `Selesai` : `Menyimpan...`}
+            </Button>
+          )}
         </Layout>
       </Layout>
     </SafeAreaView>

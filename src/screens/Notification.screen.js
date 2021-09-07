@@ -16,8 +16,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import EmptyAnimation from "../components/EmptyAnimation";
 
-const data = new Array(18).fill({
+const data = new Array(5).fill({
   title: "Title for Item",
   description: "Description for Item",
 });
@@ -52,7 +53,15 @@ const Notification = ({ navigation }) => {
         />
         <Divider />
       </Layout>
-      <List style={styles.listWrapper} data={data} renderItem={renderItem} />
+      {data !== null && data.length > 0 ? (
+        <List style={styles.listWrapper} data={data} renderItem={renderItem} />
+      ) : (
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
+          <EmptyAnimation />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -73,5 +82,6 @@ const styles = StyleSheet.create({
   },
   listWrapper: {
     maxHeight: hp("100%"),
+    backgroundColor: "white",
   },
 });

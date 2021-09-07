@@ -27,6 +27,7 @@ import { getDistance } from "geolib";
 //components
 import appConfig from "../../app.json";
 import { updateLocations } from "../state";
+import DeliveryAnimation from "../components/DeliveryAnimation";
 
 const DeliveryOnProgress = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -130,8 +131,8 @@ const DeliveryOnProgress = ({ navigation, route }) => {
           ios: "best",
         },
         enableHighAccuracy: true,
-        distanceFilter: 0,
-        interval: 5000,
+        distanceFilter: 100,
+        interval: 10000,
         fastestInterval: 2000,
         forceRequestLocation: true,
         forceLocationManager: true,
@@ -186,7 +187,7 @@ const DeliveryOnProgress = ({ navigation, route }) => {
         },
         {
           text: "OK",
-          //   onPress: () => navigation.navigate("DeliveryOnProgress"),
+          onPress: orderFailed,
         },
       ]
     );
@@ -216,6 +217,19 @@ const DeliveryOnProgress = ({ navigation, route }) => {
       finalLongitude: currentPositionRef.current.coords.longitude,
       totalTime: timerRef.current,
       totalDistance: totalDistanceRef.current,
+      type: 1,
+    });
+  };
+  const orderFailed = () => {
+    setIsDone(true);
+    removeLocationUpdates();
+    navigation.push("FinishDelivery", {
+      orderId: _id,
+      finalLatitude: currentPositionRef.current.coords.latitude,
+      finalLongitude: currentPositionRef.current.coords.longitude,
+      totalTime: timerRef.current,
+      totalDistance: totalDistanceRef.current,
+      type: 2,
     });
   };
   return (
@@ -279,6 +293,16 @@ const DeliveryOnProgress = ({ navigation, route }) => {
             Paket Terkirim
           </Button>
         </Layout>
+        <View
+          style={{
+            flex: 1,
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
+          <DeliveryAnimation />
+        </View>
       </Layout>
     </SafeAreaView>
   );

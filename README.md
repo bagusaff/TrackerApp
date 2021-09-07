@@ -41,3 +41,7 @@ npx react-native run-android / run-ios
 ## 04/09/2021
 
 - Fitur Kirim paket done ( tinggal kurang unggah foto )
+
+## 07/09/2021
+
+- Animasi menggunakan Lottie
